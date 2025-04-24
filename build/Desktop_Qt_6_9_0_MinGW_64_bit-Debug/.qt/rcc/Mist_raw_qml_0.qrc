@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/Mist/">
+    <file alias="app/qml/Main.qml">F:/Mist/app/qml/Main.qml</file>
+    <file alias="app/qml/screens/DishesPage.qml">F:/Mist/app/qml/screens/DishesPage.qml</file>
+    <file alias="app/qml/screens/RecipePage.qml">F:/Mist/app/qml/screens/RecipePage.qml</file>
+    <file alias="assets/images/bread.jpg">F:/Mist/assets/images/bread.jpg</file>
+    <file alias="assets/images/pizza.jpg">F:/Mist/assets/images/pizza.jpg</file>
+  </qresource>
+</RCC>
+
