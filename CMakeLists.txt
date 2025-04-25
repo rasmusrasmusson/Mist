@@ -3,11 +3,11 @@ cmake_minimum_required(VERSION 3.16)
 # Project setup
 project(Mist VERSION 1.0 LANGUAGES CXX)
 
-# Enable modern CMake features
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find Qt6 packages - ADD SQL FOR DATABASE
+# Find Qt packages
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Sql)
 
 # Enable automatic moc, uic, and rcc
@@ -15,41 +15,41 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-# Source files
+# Source files - UPDATE THESE PATHS TO MATCH YOUR ACTUAL FILES
 set(SOURCES
     main.cpp
+    DishWidget.cpp
     dishespage.cpp
     recipepage.cpp
-    DishWidget.cpp
-    database/DatabaseManager.cpp
+    src/database/AppDatabase.cpp  # Renamed from recipedatabase.cpp
 )
-set(SOURCES
-    ${SOURCES}
-    DishWidget.cpp
-)
-# UI files (forms)
+
+# UI files
 set(FORMS
     dishespage.ui
     recipepage.ui
 )
 
-# Add resources (only need to declare once)
-qt_add_resources(RESOURCES resources.qrc)
-
-# Image resources (add this below your existing qt_add_resources)
+# Resources
 qt_add_resources(RESOURCES
     resources.qrc
-    # Add more .qrc files here if needed later
-    # images.qrc  # Example for additional resource files
 )
 
-# Create executable - INCLUDES FORMS
+# Include directories
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/database
+)
+
+# Create executable
 qt_add_executable(Mist
     ${SOURCES}
     ${FORMS}
+    ${RESOURCES}
 )
 
-# Link Qt libraries - ADD SQL
+# Link Qt libraries
 target_link_libraries(Mist PRIVATE
     Qt6::Core
     Qt6::Gui
