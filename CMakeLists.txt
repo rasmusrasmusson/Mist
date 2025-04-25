@@ -23,7 +23,10 @@ set(SOURCES
     DishWidget.cpp
     database/DatabaseManager.cpp
 )
-
+set(SOURCES
+    ${SOURCES}
+    DishWidget.cpp
+)
 # UI files (forms)
 set(FORMS
     dishespage.ui
