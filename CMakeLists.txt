@@ -23,6 +23,7 @@ set(SOURCES
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    mainwindow.ui
 )
 
 # Create executable

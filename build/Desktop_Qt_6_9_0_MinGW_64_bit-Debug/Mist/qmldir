@@ -1,7 +1,0 @@
-module Mist
-typeinfo Mist.qmltypes
-prefer :/Mist/
-Main 1.0 app/qml/Main.qml
-DishesPage 1.0 app/qml/screens/DishesPage.qml
-RecipePage 1.0 app/qml/screens/RecipePage.qml
-
