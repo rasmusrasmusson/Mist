@@ -1,4 +1,4 @@
-#include "RecipeDatabase.h"
+#include "AppDatabase.h"
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>

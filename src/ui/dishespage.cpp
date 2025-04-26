@@ -1,6 +1,6 @@
 #include "dishespage.h"
 #include "DishWidget.h"
-#include "database/AppDatabase.h"  // Your renamed database class
+#include "src/database/AppDatabase.h"  // Your renamed database class
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QDebug>

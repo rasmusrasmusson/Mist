@@ -47,6 +47,7 @@ qt_add_executable(Mist
     ${SOURCES}
     ${FORMS}
     ${RESOURCES}
+    src/database/Recipe.h
 )
 
 # Link Qt libraries
