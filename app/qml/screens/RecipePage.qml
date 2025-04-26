@@ -54,4 +54,32 @@ Page {
         Component.onCompleted: loadRecipe(recipeId)
     }
 }
+Item {
+    // ... existing code
+
+    Column {
+        anchors.fill: parent
+        spacing: 20
+
+        Text {
+            text: recipeName
+            font.pixelSize: 40
+        }
+
+        // Add recipe steps with timings
+        Repeater {
+            model: recipeSteps
+            delegate: Row {
+                spacing: 10
+                Text { text: modelData.step; font.pixelSize: 24 }
+                Text { text: modelData.temperature + "°C"; font.pixelSize: 24 }
+                Text { text: modelData.duration + " min"; font.pixelSize: 24 }
+                Button {
+                    text: "Start"
+                    onClicked: ovenController.startStep(modelData)
+                }
+            }
+        }
+    }
+}
 

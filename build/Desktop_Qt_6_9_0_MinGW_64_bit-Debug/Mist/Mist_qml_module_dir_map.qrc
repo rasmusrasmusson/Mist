@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="/Mist">F:/Mist/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/Mist</file>
+
+  </qresource>
+</RCC>

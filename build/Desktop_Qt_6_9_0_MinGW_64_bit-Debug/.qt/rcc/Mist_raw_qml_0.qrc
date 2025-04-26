@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/Mist/">
+    <file alias="qml/main.qml">F:/Mist/qml/main.qml</file>
+    <file alias="qml/DishesPage.qml">F:/Mist/qml/DishesPage.qml</file>
+    <file alias="qml/RecipePage.qml">F:/Mist/qml/RecipePage.qml</file>
+  </qresource>
+</RCC>
+

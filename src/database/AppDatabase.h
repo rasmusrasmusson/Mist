@@ -1,31 +1,29 @@
-#ifndef RECIPEDATABASE_H
-#define RECIPEDATABASE_H
+#pragma once
 
 #include <QObject>
 #include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QVariantMap>
-#include <QVariantList>
+#include <QtQmlIntegration>  // Add for QML integration
 
-class RecipeDatabase : public QObject
+class AppDatabase : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT         // Enable QML registration
+    QML_SINGLETON       // Make it a singleton
+
 public:
-    explicit RecipeDatabase(QObject *parent = nullptr);
-    ~RecipeDatabase();
+    explicit AppDatabase(QObject *parent = nullptr);
 
-    // Methods exposed to QML
+    Q_INVOKABLE bool initializeDatabase();  // Make invokable from QML
     Q_INVOKABLE QVariantList getDishes();
-    Q_INVOKABLE QVariantMap getRecipe(int id);
-    Q_INVOKABLE bool addRecipe(const QString &name, const QString &imagePath, const QString &steps);
+    Q_INVOKABLE QVariantMap getRecipe(int dishId);
+    Q_INVOKABLE bool addDish(const QString &name, const QString &description);  // Example new method
 
-signals:  // Moved inside the class declaration
-    void recipeLoaded(const QVariantMap &recipe);
+    static AppDatabase* instance();  // Singleton accessor
 
 private:
     QSqlDatabase m_db;
-    void initializeDatabase();
-    QString getDatabasePath();
-};
+    QString m_databasePath;
 
-#endif // RECIPEDATABASE_H
+    bool createTables();  // Split table creation into separate method
+    bool seedInitialData();  // Separate initial data population
+};

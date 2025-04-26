@@ -1,62 +1,45 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.21)
 
-# Project setup
-project(Mist VERSION 1.0 LANGUAGES CXX)
+project(Mist LANGUAGES CXX)
 
-# Set C++ standard
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(Qt6 REQUIRED COMPONENTS Quick QuickControls2 Sql)
 
-# Find Qt packages
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Sql)
+qt_standard_project_setup()
 
-# Enable automatic moc, uic, and rcc
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-
-# Source files - UPDATE THESE PATHS TO MATCH YOUR ACTUAL FILES
-set(SOURCES
-    main.cpp
-    DishWidget.cpp
-    dishespage.cpp
-    recipepage.cpp
-    src/database/AppDatabase.cpp  # Renamed from recipedatabase.cpp
-)
-
-# UI files
-set(FORMS
-    dishespage.ui
-    recipepage.ui
-)
-
-# Resources
-qt_add_resources(RESOURCES
-    resources.qrc
-)
-
-# Include directories
-include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/database
-)
-
-# Create executable
 qt_add_executable(Mist
-    ${SOURCES}
-    ${FORMS}
-    ${RESOURCES}
-    src/database/Recipe.h
+    main.cpp
+    databasemanager.cpp
+    databasemanager.h
 )
 
-# Link Qt libraries
+qt_add_qml_module(Mist
+    URI Mist
+    VERSION 1.0
+    QML_FILES
+        qml/main.qml
+        qml/DishesPage.qml
+        qml/RecipePage.qml
+)
+
 target_link_libraries(Mist PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Widgets
+    Qt6::Quick
+    Qt6::QuickControls2
     Qt6::Sql
 )
 
-# Install target (optional)
-install(TARGETS Mist DESTINATION bin)
+set_target_properties(Mist PROPERTIES
+    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.mist
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
+)
+
+target_sources(Mist PRIVATE
+    src/AppDatabase.cpp
+    src/AppDatabase.h
+)
+
+target_include_directories(Mist PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)

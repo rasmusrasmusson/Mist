@@ -1,0 +1,6 @@
+module Mist
+typeinfo Mist.qmltypes
+prefer :/Mist/
+DishesPage 1.0 qml/DishesPage.qml
+RecipePage 1.0 qml/RecipePage.qml
+
